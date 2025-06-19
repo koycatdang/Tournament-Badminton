@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải Cầu Lông - Tổ Chức Giải Đấu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-trophy"></i> Giải Cầu Lông</h1>
+            <p>Hệ thống tổ chức và quản lý giải đấu</p>
+        </header>
+
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showStep(1)">Bước 1: Nhập Tên VĐV</button>
+            <button class="nav-btn" onclick="showStep(2)">Bước 2: Tạo Đội</button>
+            <button class="nav-btn" onclick="showStep(3)">Bước 3: Thi Đấu</button>
+        </div>
+
+        <!-- Bước 1: Nhập vận động viên -->
+        <div id="step1" class="step active">
+            <h2><i class="fas fa-users"></i> Nhập Thông Tin Vận Động Viên</h2>
+            <div class="input-section">
+                <div class="player-input">
+                    <input type="text" id="playerName" placeholder="Tên vận động viên" maxlength="30">
+                    <select id="playerSkill">
+                        <option value="">Chọn trình độ</option>
+                        <option value="1">🐣 Mới tập (vừa cầm vợt)</option>
+                        <option value="2">🏃 Khá khá (đánh được cơ bản)</option>
+                        <option value="3">🔥 Cao thủ (đánh hay lắm)</option>
+                    </select>
+                    <button onclick="addPlayer()"><i class="fas fa-plus"></i> Thêm VĐV</button>
+                </div>
+            </div>
+            
+            <div class="players-list">
+                <h3>Danh sách vận động viên (<span id="playerCount">0</span>)</h3>
+                <div id="playersList"></div>
+            </div>
+            
+            <div class="step-actions">
+                <button onclick="showStep(2)" class="next-btn" id="nextToStep2" disabled>
+                    Tiếp theo: Tạo đội <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bước 2: Tạo đội -->
+        <div id="step2" class="step">
+            <h2><i class="fas fa-users-cog"></i> Tạo Đội Thi Đấu</h2>
+            <div class="team-creation">
+                <button onclick="createTeams()" class="create-teams-btn">
+                    <i class="fas fa-random"></i> Tạo đội ngẫu nhiên
+                </button>
+                <p class="note">Hệ thống sẽ tự động sắp xếp các đội cân bằng theo kỹ năng</p>
+            </div>
+            
+            <div id="teamsDisplay" class="teams-container"></div>
+            
+            <div class="step-actions">
+                <button onclick="showStep(1)" class="prev-btn">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </button>
+                <button onclick="showStep(3)" class="next-btn" id="nextToStep3" disabled>
+                    Tiếp theo: Thi đấu <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bước 3: Thi đấu -->
+        <div id="step3" class="step">
+            <h2><i class="fas fa-trophy"></i> Thi Đấu Vòng Tròn</h2>
+            
+            <div class="tournament-controls">
+                <button onclick="generateMatches()" class="generate-matches-btn">
+                    <i class="fas fa-list"></i> Tạo lịch thi đấu
+                </button>
+            </div>
+
+            <div class="tournament-layout">
+                <div class="matches-section">
+                    <h3><i class="fas fa-calendar-alt"></i> Lịch Thi Đấu</h3>
+                    <div id="matchesList"></div>
+                </div>
+                
+                <div class="standings-section">
+                    <h3><i class="fas fa-list-ol"></i> Bảng Xếp Hạng</h3>
+                    <div id="standingsTable"></div>
+                </div>
+            </div>
+            
+            <div class="step-actions">
+                <button onclick="showStep(2)" class="prev-btn">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </button>
+                <button onclick="resetTournament()" class="reset-btn">
+                    <i class="fas fa-redo"></i> Tạo giải mới
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal để nhập điểm -->
+    <div id="scoreModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeScoreModal()">&times;</span>
+            <h3>Nhập Kết Quả Trận Đấu</h3>
+            <div id="scoreInputContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
