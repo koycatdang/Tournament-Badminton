@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Quả Giải Đấu - Badminton Tournament</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-trophy"></i> Kết Quả Giải Đấu</h1>
+            <p>Thống kê chi tiết và vinh danh</p>
+        </header>
+
+        <div class="results-navigation">
+            <button class="nav-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i> Về trang chính
+            </button>
+            <button class="nav-btn" onclick="exportResults()">
+                <i class="fas fa-download"></i> Tải xuống PDF
+            </button>
+        </div>
+
+        <!-- Tournament Info -->
+        <div class="tournament-info-card">
+            <div class="tournament-header">
+                <h2 id="tournamentTitle">Giải Cầu Lông Đôi</h2>
+                <div class="tournament-meta">
+                    <span id="tournamentDate"></span>
+                    <span id="tournamentFormat"></span>
+                    <span id="tournamentTeams"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Champions Section -->
+        <div class="champions-section">
+            <div class="champion-card main-champion">
+                <div class="champion-crown">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3>🏆 Đội Vô Địch</h3>
+                <div id="championTeam" class="champion-team">
+                    <!-- Champion team info will be inserted here -->
+                </div>
+            </div>
+
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Teamwork Xuất Sắc</h4>
+                    <div id="teamworkAward" class="award-recipient">
+                        <!-- Teamwork award will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>MVP Giải Đấu</h4>
+                    <div id="mvpAward" class="award-recipient">
+                        <!-- MVP award will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h4>Điểm Số Cao Nhất</h4>
+                    <div id="highScoreAward" class="award-recipient">
+                        <!-- High score award will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Standings -->
+        <div class="final-standings-section">
+            <h3><i class="fas fa-list-ol"></i> Bảng Xếp Hạng Cuối</h3>
+            <div id="finalStandings" class="standings-container">
+                <!-- Final standings will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Match Results -->
+        <div class="match-results-section">
+            <h3><i class="fas fa-history"></i> Lịch Sử Trận Đấu</h3>
+            <div id="matchHistory" class="match-history-container">
+                <!-- Match history will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="statistics-section">
+            <h3><i class="fas fa-chart-bar"></i> Thống Kê Chi Tiết</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalMatches">0</div>
+                    <div class="stat-label">Tổng Trận Đấu</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalPoints">0</div>
+                    <div class="stat-label">Tổng Điểm Ghi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgMatchDuration">0</div>
+                    <div class="stat-label">Thời Gian TB</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="closestMatch">0-0</div>
+                    <div class="stat-label">Trận Căng Thẳng Nhất</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Performance -->
+        <div class="player-performance-section">
+            <h3><i class="fas fa-users"></i> Thành Tích Cá Nhân</h3>
+            <div id="playerStats" class="player-stats-container">
+                <!-- Player statistics will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="results.js"></script>
+</body>
+</html> 

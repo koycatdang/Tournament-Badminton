@@ -20,24 +20,21 @@
             <button class="nav-btn" onclick="showStep(3)">Bước 3: Thi Đấu</button>
         </div>
 
-        <!-- Bước 1: Nhập vận động viên -->
+        <!-- Bước 1: Chọn vận động viên -->
         <div id="step1" class="step active">
-            <h2><i class="fas fa-users"></i> Nhập Thông Tin Vận Động Viên</h2>
-            <div class="input-section">
-                <div class="player-input">
-                    <input type="text" id="playerName" placeholder="Tên vận động viên" maxlength="30">
-                    <select id="playerSkill">
-                        <option value="">Chọn trình độ</option>
-                        <option value="1">🐣 Mới tập (vừa cầm vợt)</option>
-                        <option value="2">🏃 Khá khá (đánh được cơ bản)</option>
-                        <option value="3">🔥 Cao thủ (đánh hay lắm)</option>
-                    </select>
-                    <button onclick="addPlayer()"><i class="fas fa-plus"></i> Thêm VĐV</button>
+            <h2><i class="fas fa-users"></i> Chọn Vận Động Viên Tham Gia</h2>
+            
+            <div class="selection-header">
+                <div class="selection-info">
+                    <span class="selected-count">Đã chọn: <span id="playerCount">0</span> người</span>
+                    <span class="selection-note">Click vào thẻ để chọn/bỏ chọn (cần ít nhất 4 người)</span>
                 </div>
+                <button class="add-player-btn" onclick="openAddPlayerModal()">
+                    <i class="fas fa-plus"></i> Thêm người mới
+                </button>
             </div>
             
-            <div class="players-list">
-                <h3>Danh sách vận động viên (<span id="playerCount">0</span>)</h3>
+            <div class="players-grid">
                 <div id="playersList"></div>
             </div>
             
@@ -72,23 +69,41 @@
 
         <!-- Bước 3: Thi đấu -->
         <div id="step3" class="step">
-            <h2><i class="fas fa-trophy"></i> Thi Đấu Vòng Tròn</h2>
+            <h2><i class="fas fa-trophy"></i> Thi Đấu Tournament</h2>
             
             <div class="tournament-controls">
+                <div class="tournament-format-tabs">
+                    <button class="format-tab active" data-format="round-robin" onclick="switchTournamentFormat('round-robin')">
+                        <i class="fas fa-sync-alt"></i> Vòng tròn
+                    </button>
+                    <button class="format-tab" data-format="knockout" onclick="switchTournamentFormat('knockout')">
+                        <i class="fas fa-sitemap"></i> Loại trực tiếp
+                    </button>
+                </div>
+                
                 <button onclick="generateMatches()" class="generate-matches-btn">
-                    <i class="fas fa-list"></i> Tạo lịch thi đấu
+                    <i class="fas fa-trophy"></i> Tạo lịch thi đấu
                 </button>
+                
+                <div class="format-description">
+                    <p class="note" id="formatDescription">Thi đấu vòng tròn - mỗi đội đấu với tất cả các đội khác</p>
+                </div>
             </div>
 
-            <div class="tournament-layout">
-                <div class="matches-section">
+            <div class="tournament-layout" id="tournamentLayout">
+                <div class="matches-section" id="matchesSection">
                     <h3><i class="fas fa-calendar-alt"></i> Lịch Thi Đấu</h3>
                     <div id="matchesList"></div>
                 </div>
                 
-                <div class="standings-section">
+                <div class="standings-section" id="standingsSection">
                     <h3><i class="fas fa-list-ol"></i> Bảng Xếp Hạng</h3>
                     <div id="standingsTable"></div>
+                </div>
+                
+                <div class="bracket-section" id="bracketSection" style="display: none;">
+                    <h3><i class="fas fa-sitemap"></i> Bracket Tournament</h3>
+                    <div id="bracketContainer"></div>
                 </div>
             </div>
             
@@ -101,14 +116,58 @@
                 </button>
             </div>
         </div>
+
+        <!-- Tournament Summary Section -->
+        <div class="tournament-summary-section" id="tournamentSummary" style="display: none;">
+            <h3><i class="fas fa-trophy"></i> Tổng Kết Giải Đấu</h3>
+            <p>Giải đấu đã hoàn thành! Xem kết quả chi tiết và vinh danh các đội thi đấu.</p>
+            <button class="summary-btn" onclick="showTournamentSummary()">
+                <i class="fas fa-award"></i>
+                Xem Tổng Kết & Vinh Danh
+            </button>
+        </div>
     </div>
 
     <!-- Modal để nhập điểm -->
     <div id="scoreModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeScoreModal()">&times;</span>
-            <h3>Nhập Kết Quả Trận Đấu</h3>
+            <h3></h3>
             <div id="scoreInputContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal thêm người chơi mới -->
+    <div id="addPlayerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddPlayerModal()">&times;</span>
+            <h3><i class="fas fa-user-plus"></i> Thêm Người Chơi Mới</h3>
+            <div class="add-player-form">
+                <div class="form-group">
+                    <label>Tên:</label>
+                    <input type="text" id="newPlayerName" placeholder="Nhập tên người chơi" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label>Giới tính:</label>
+                    <select id="newPlayerGender">
+                        <option value="">Chọn giới tính</option>
+                        <option value="nam">👨 Nam</option>
+                        <option value="nữ">👩 Nữ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Trình độ:</label>
+                    <select id="newPlayerSkill">
+                        <option value="">Chọn trình độ</option>
+                        <option value="1">🐣 Mới tập (vừa cầm vợt)</option>
+                        <option value="2">🏃 Khá khá (đánh được cơ bản)</option>
+                        <option value="3">🔥 Cao thủ (đánh hay lắm)</option>
+                    </select>
+                </div>
+                <button class="submit-btn" onclick="addNewPlayer()">
+                    <i class="fas fa-check"></i> Thêm vào danh sách
+                </button>
+            </div>
         </div>
     </div>
 
