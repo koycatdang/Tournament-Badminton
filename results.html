@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kết Quả Giải Đấu - Badminton Tournament</title>
-    
-    <!-- Cache Control Meta Tags -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -19,9 +13,6 @@
     
     <!-- Thư viện Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-    
-    <!-- Cache Control System -->
-    <script src="cache-control.js"></script>
 </head>
 <body>
     <div class="container">
@@ -187,13 +178,6 @@
         </div>
     </div>
 
-    <script>
-        // Add version to results.js
-        document.addEventListener('DOMContentLoaded', function() {
-            const script = document.createElement('script');
-            script.src = 'results.js?v=' + Date.now();
-            document.body.appendChild(script);
-        });
-    </script>
+    <script src="results.js"></script>
 </body>
 </html> 
