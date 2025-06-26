@@ -185,5 +185,5 @@ Hệ thống này được thiết kế để mang lại trải nghiệm tournam
 ---
 
 **Phiên bản**: 2.0  
-**Cập nhật lần cuối**: Tháng 12, 2024  
-**Tác giả**: Hệ thống quản lý Tournament Badminton 
+**Cập nhật lần cuối**: Tháng 6, 2025  
+**Tác giả**: Hoài Lêm koycatdang
