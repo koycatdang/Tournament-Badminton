@@ -57,8 +57,9 @@ Chào mừng bạn đến với hệ thống tournament badminton! Đây là hư
 ## 🎖️ Hiểu Về Hệ Thống Điểm
 
 ### 🏆 **Điểm Đội**
-- **Thắng trận**: +3 điểm cho đội
-- **Thua trận**: +0 điểm
+### 🏆 **Điểm Đội**
+- **Thắng trận**: +2 điểm cho đội
+- **Thua trận**: +1 điểm cho đội
 - **Thứ hạng**: Theo tổng điểm đội
 
 ### 👑 **Điểm Cá Nhân**
