@@ -186,4 +186,4 @@ Hệ thống này được thiết kế để mang lại trải nghiệm tournam
 
 **Phiên bản**: 2.0  
 **Cập nhật lần cuối**: Tháng 6, 2025  
-**Tác giả**: Hoài Lêm koycatdang
+**Tác giả**: Hoài Lê koycatdang
