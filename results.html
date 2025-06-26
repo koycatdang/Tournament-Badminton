@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kết Quả Giải Đấu - Badminton Tournament</title>
+    
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Thư viện tạo PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Thư viện Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    
+    <!-- Cache Control System -->
+    <script src="cache-control.js"></script>
 </head>
 <body>
     <div class="container">
@@ -18,9 +34,17 @@
             <button class="nav-btn" onclick="window.location.href='index.html'">
                 <i class="fas fa-arrow-left"></i> Về trang chính
             </button>
-            <button class="nav-btn" onclick="exportResults()">
-                <i class="fas fa-download"></i> Tải xuống PDF
-            </button>
+            <div class="export-buttons">
+                <button class="nav-btn reset-btn" onclick="clearTournamentData()" style="background: #f44336;">
+                    <i class="fas fa-trash"></i> Xóa dữ liệu
+                </button>
+                <button class="nav-btn export-btn" onclick="exportToPDF()">
+                    <i class="fas fa-file-pdf"></i> Tải PDF
+                </button>
+                <button class="nav-btn export-btn" onclick="exportToImage()">
+                    <i class="fas fa-image"></i> Tải hình ảnh
+                </button>
+            </div>
         </div>
 
         <!-- Tournament Info -->
@@ -38,10 +62,14 @@
         <!-- Champions Section -->
         <div class="champions-section">
             <div class="champion-card main-champion">
-                <div class="champion-crown">
-                    <i class="fas fa-crown"></i>
+                <div class="champion-crown-multiple">
+                    <i class="fas fa-crown crown-main"></i>
+                    <i class="fas fa-crown crown-left"></i>
+                    <i class="fas fa-crown crown-right"></i>
+                    <i class="fas fa-crown crown-small-1"></i>
+                    <i class="fas fa-crown crown-small-2"></i>
                 </div>
-                <h3>🏆 Đội Vô Địch</h3>
+                <h3>👑✨ Nhà Vua Sân Cầu ✨👑</h3>
                 <div id="championTeam" class="champion-team">
                     <!-- Champion team info will be inserted here -->
                 </div>
@@ -113,8 +141,39 @@
                     <div class="stat-label">Thời Gian TB</div>
                 </div>
                 <div class="stat-card">
+                    <div class="stat-number" id="fastestMatch">0 phút</div>
+                    <div class="stat-label">Trận Nhanh Nhất</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="longestMatch">0 phút</div>
+                    <div class="stat-label">Trận Lâu Nhất</div>
+                </div>
+                <div class="stat-card">
                     <div class="stat-number" id="closestMatch">0-0</div>
                     <div class="stat-label">Trận Căng Thẳng Nhất</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Analysis -->
+        <div class="charts-analysis-section">
+            <h3><i class="fas fa-chart-pie"></i> Phân Tích Biểu Đồ</h3>
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h4><i class="fas fa-chart-bar"></i> So Sánh Thắng/Thua</h4>
+                    <canvas id="winsLossesChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h4><i class="fas fa-chart-pie"></i> Phân Bố Điểm Số</h4>
+                    <canvas id="scoreDistributionChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h4><i class="fas fa-chart-area"></i> So Sánh Tổng Hợp</h4>
+                    <canvas id="teamComparisonChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h4><i class="fas fa-chart-line"></i> Thời Gian Trận Đấu</h4>
+                    <canvas id="matchDurationChart"></canvas>
                 </div>
             </div>
         </div>
@@ -128,6 +187,13 @@
         </div>
     </div>
 
-    <script src="results.js"></script>
+    <script>
+        // Add version to results.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const script = document.createElement('script');
+            script.src = 'results.js?v=' + Date.now();
+            document.body.appendChild(script);
+        });
+    </script>
 </body>
 </html> 

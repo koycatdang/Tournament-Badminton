@@ -1,16 +1,16 @@
 // Dữ liệu toàn cục với hình ảnh đẹp
 let allPlayers = [
-    { id: 1, name: "Hạnh", gender: "nữ", skill: 2, selected: false, image: "https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-    { id: 2, name: "Hân", gender: "nữ", skill: 2, selected: false, image: "https://images.unsplash.com/photo-1488716820095-cbe80883c496?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
-    { id: 3, name: "Trang", gender: "nữ", skill: 3, selected: false, image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
-    { id: 4, name: "Như", gender: "nữ", skill: 1, selected: false, image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" },
-    { id: 5, name: "Ny", gender: "nữ", skill: 3, selected: false, image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" },
-    { id: 6, name: "Thanh", gender: "nữ", skill: 3, selected: false, image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)" },
-    { id: 7, name: "Hằng", gender: "nữ", skill: 2, selected: false, image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" },
-    { id: 8, name: "Duyên", gender: "nữ", skill: 1, selected: false, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)" },
-    { id: 9, name: "Hoài", gender: "nam", skill: 2, selected: false, image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-    { id: 10, name: "Tuấn", gender: "nam", skill: 2, selected: false, image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
-    { id: 11, name: "Cương", gender: "nam", skill: 3, selected: false, image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" }
+    { id: 1, name: "Hạnh", gender: "nữ", skill: 2, selected: false, image: "images/hanh.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+    { id: 2, name: "Hân", gender: "nữ", skill: 2, selected: false, image: "images/han.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
+    { id: 3, name: "Trang", gender: "nữ", skill: 3, selected: false, image: "images/trang.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
+    { id: 4, name: "Như", gender: "nữ", skill: 1, selected: false, image: "images/nhu.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" },
+    { id: 5, name: "Ny", gender: "nữ", skill: 3, selected: false, image: "images/ny.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" },
+    { id: 6, name: "Thanh", gender: "nữ", skill: 3, selected: false, image: "images/thanh.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)" },
+    { id: 7, name: "Hằng", gender: "nữ", skill: 2, selected: false, image: "images/hang.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" },
+    { id: 8, name: "Duyên", gender: "nữ", skill: 1, selected: false, image: "images/duyen.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)" },
+    { id: 9, name: "Hoài", gender: "nam", skill: 2, selected: false, image: "images/hoai.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+    { id: 10, name: "Tuấn", gender: "nam", skill: 2, selected: false, image: "images/tuan.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
+    { id: 11, name: "Cương", gender: "nam", skill: 3, selected: false, image: "images/cuong.png?w=300&h=400&fit=crop&crop=face", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" }
 ];
 let selectedPlayers = [];
 let teams = [];
@@ -21,18 +21,18 @@ let currentStep = 1;
 
 // Danh sách tên đội 1 chữ cái và thông tin team
 const teamData = [
-    { name: "A", fullName: "Alpha", logo: "🔥", image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-    { name: "B", fullName: "Bravo", logo: "🐉", image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
-    { name: "C", fullName: "Charlie", logo: "⚡", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
-    { name: "D", fullName: "Delta", logo: "❄️", image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" },
-    { name: "E", fullName: "Echo", logo: "🌙", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" },
-    { name: "F", fullName: "Foxtrot", logo: "⚔️", image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)" },
-    { name: "G", fullName: "Golf", logo: "🐍", image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" },
-    { name: "H", fullName: "Hotel", logo: "👻", image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)" },
-    { name: "I", fullName: "India", logo: "🐅", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-    { name: "J", fullName: "Juliet", logo: "😈", image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
-    { name: "K", fullName: "Kilo", logo: "🌪️", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
-    { name: "L", fullName: "Lima", logo: "👹", image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" }
+    { name: "A", fullName: "Alpha", logo: "🔥", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+    { name: "B", fullName: "Bravo", logo: "🐉", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
+    { name: "C", fullName: "Charlie", logo: "⚡", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
+    { name: "D", fullName: "Delta", logo: "❄️", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" },
+    { name: "E", fullName: "Echo", logo: "🌙", gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" },
+    { name: "F", fullName: "Foxtrot", logo: "⚔️", gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)" },
+    { name: "G", fullName: "Golf", logo: "🐍", gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" },
+    { name: "H", fullName: "Ghost", logo: "👻", gradient: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)" },
+    { name: "I", fullName: "Báo", logo: "🐅", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+    { name: "J", fullName: "Juliet", logo: "😈", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
+    { name: "K", fullName: "Kilo", logo: "🌪️", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
+    { name: "L", fullName: "Lima", logo: "👹", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" }
 ];
 
 // Khởi tạo
@@ -84,7 +84,7 @@ function displayPlayerCards() {
             <div class="card-background" style="background: ${player.gradient}"></div>
             
             <div class="card-image">
-                <img src="${player.image}" alt="${player.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI2MCI+8J+Rqy08L3RleHQ+Cjwvc3ZnPgo='">
+                <img src="${player.image || player.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI2MCI+8J+Rqy08L3RleHQ+Cjwvc3ZnPgo=`}" alt="${player.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI2MCI+8J+RqZwvdGV4dD4KPC9zdmc+Cg=='">
                 ${player.selected ? '<div class="selected-overlay"><i class="fas fa-check-circle"></i></div>' : ''}
             </div>
             
@@ -185,7 +185,11 @@ function addNewPlayer() {
         gender: gender,
         skill: skill,
         selected: false,
-        avatar: gender === 'nam' ? '👨' : '👩'
+        avatar: gender === 'nam' ? '👨' : '👩',
+        image: `data:image/svg+xml;base64,${btoa(`<svg width="300" height="400" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="400" fill="#667eea"/>
+            <text x="150" y="200" text-anchor="middle" fill="white" font-size="60">${gender === 'nam' ? '👨' : '👩'}</text>
+        </svg>`)}`
     };
     
     allPlayers.push(newPlayer);
@@ -325,7 +329,6 @@ function actuallyCreateTeams() {
         team.name = teamInfo.name;
         team.fullName = teamInfo.fullName;
         team.logo = teamInfo.logo;
-        team.image = teamInfo.image;
         team.gradient = teamInfo.gradient;
     });
     
@@ -467,8 +470,7 @@ function displayTeamsWithAnimation() {
         <div class="esports-team-card team-animate" style="animation-delay: ${index * 0.3}s">
             <div class="team-background" style="background: ${team.gradient}"></div>
             <div class="team-image-section">
-                <img src="${team.image}" alt="Team ${team.name}" class="team-image" 
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCI+8J+UqTwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="team-logo-display">${team.logo}</div>
                 <div class="team-overlay"></div>
             </div>
             
@@ -484,7 +486,7 @@ function displayTeamsWithAnimation() {
                     ${team.members.map(member => `
                         <div class="member-inline">
                             <div class="member-avatar-small">
-                                <img src="${member.image}" alt="${member.name}" 
+                                <img src="${member.image || member.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjUwIiB5PSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iNDAiPvCfkaPwn5yqPC90ZXh0Pgo8L3N2Zz4K`}" alt="${member.name}" 
                                      onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjUwIiB5PSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iNDAiPvCfkaPwn5yqPC90ZXh0Pgo8L3N2Zz4K'">
                             </div>
                             <div class="member-info-inline">
@@ -824,6 +826,8 @@ function openScoreModal(matchId) {
             </div>
         </div>
         
+        <div class="modal-scrollable-content">
+        
         <div class="score-format-selector">
             <div class="format-label">Thể thức thi đấu:</div>
             <div class="format-options">
@@ -889,21 +893,137 @@ function openScoreModal(matchId) {
         
         <div class="score-validation-message" id="scoreValidation" style="display: none;"></div>
         
-        <button class="submit-score-btn-pro" onclick="submitScore(${matchId})">
-            <i class="fas fa-check-circle"></i> Xác nhận kết quả
-        </button>
+        <!-- Thông tin bổ sung trận đấu -->
+        <div class="match-additional-info">
+            <div class="match-duration-section">
+                <div class="duration-header">
+                    <i class="fas fa-stopwatch"></i> Thời gian trận đấu
+                </div>
+                <div class="duration-input-container">
+                    <input type="number" id="matchMinutes" min="1" max="180" value="25" placeholder="25">
+                    <span class="duration-unit">phút</span>
+                </div>
+            </div>
+            
+            <div class="mvp-selection-section">
+                <div class="mvp-header">
+                    <i class="fas fa-star"></i> MVP Trận Đấu
+                </div>
+                <div class="mvp-players-grid">
+                    ${match.team1.members.map(member => `
+                        <div class="mvp-player-card" onclick="selectMVP('${member.name}', '${match.team1.fullName}')">
+                            <div class="mvp-player-avatar">
+                                <img src="${member.image || member.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K`}" alt="${member.name}" 
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K'">
+                            </div>
+                            <div class="mvp-player-name">${member.name}</div>
+                            <div class="mvp-player-team">${match.team1.fullName}</div>
+                        </div>
+                    `).join('')}
+                    ${match.team2.members.map(member => `
+                        <div class="mvp-player-card" onclick="selectMVP('${member.name}', '${match.team2.fullName}')">
+                            <div class="mvp-player-avatar">
+                                <img src="${member.image || member.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K`}" alt="${member.name}"
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K'">
+                            </div>
+                            <div class="mvp-player-name">${member.name}</div>
+                            <div class="mvp-player-team">${match.team2.fullName}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="mvp-selected" id="mvpSelected" style="display: none;">
+                    <i class="fas fa-star"></i> MVP đã chọn: <span id="mvpSelectedName"></span>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        
+        <div class="modal-footer-custom">
+            <button class="submit-score-btn-pro" onclick="submitScore(${matchId})" id="submitBtn">
+                <i class="fas fa-check-circle"></i> Xác nhận kết quả
+            </button>
+        </div>
     `;
     
     modal.style.display = 'block';
     
     // Khởi tạo format mặc định
     window.currentScoreFormat = 11;
+    window.selectedMVP = null;
     updateScoreRules();
+    
+    // Thêm event listener cho input thời gian
+    const matchMinutesInput = document.getElementById('matchMinutes');
+    if (matchMinutesInput) {
+        matchMinutesInput.addEventListener('input', updateSubmitButtonState);
+    }
+    
+    // Khởi tạo trạng thái submit button
+    updateSubmitButtonState();
 }
 
 // Đóng modal
 function closeScoreModal() {
     document.getElementById('scoreModal').style.display = 'none';
+    // Reset MVP selection
+    window.selectedMVP = null;
+}
+
+// Chọn MVP
+function selectMVP(playerName, teamName) {
+    // Remove previous selection
+    document.querySelectorAll('.mvp-player-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    
+    // Add selection to clicked card
+    event.currentTarget.classList.add('selected');
+    
+    // Store selected MVP
+    window.selectedMVP = {
+        name: playerName,
+        team: teamName
+    };
+    
+    // Update display
+    const mvpSelected = document.getElementById('mvpSelected');
+    const mvpSelectedName = document.getElementById('mvpSelectedName');
+    
+    mvpSelected.style.display = 'block';
+    mvpSelectedName.textContent = `${playerName} (Team ${teamName})`;
+    
+    // Update submit button state
+    updateSubmitButtonState();
+}
+
+// Cập nhật trạng thái nút submit
+function updateSubmitButtonState() {
+    const submitBtn = document.getElementById('submitBtn');
+    const score1 = parseInt(document.getElementById('score1').value) || 0;
+    const score2 = parseInt(document.getElementById('score2').value) || 0;
+    const matchMinutes = parseInt(document.getElementById('matchMinutes').value) || 0;
+    const mvpSelected = window.selectedMVP;
+    
+    // Kiểm tra điều kiện để enable submit
+    const hasValidScore = (score1 > 0 || score2 > 0) && (score1 !== score2);
+    const hasValidDuration = matchMinutes > 0;
+    const hasMVP = mvpSelected !== null && mvpSelected !== undefined;
+    
+    if (hasValidScore && hasValidDuration && hasMVP) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Xác nhận kết quả';
+    } else {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.6';
+        let missingItems = [];
+        if (!hasValidScore) missingItems.push('điểm số hợp lệ');
+        if (!hasValidDuration) missingItems.push('thời gian trận đấu');
+        if (!hasMVP) missingItems.push('MVP');
+        
+        submitBtn.innerHTML = `<i class="fas fa-exclamation-circle"></i> Thiếu: ${missingItems.join(', ')}`;
+    }
 }
 
 // Chọn format điểm số
@@ -968,6 +1088,7 @@ function changeScore(inputId, delta) {
     }, 150);
     
     validateScore();
+    updateSubmitButtonState();
 }
 
 // Validate điểm số theo luật cầu lông
@@ -1223,10 +1344,22 @@ function updateBracketProgression(completedMatch) {
 function submitScore(matchId) {
     const score1 = parseInt(document.getElementById('score1').value) || 0;
     const score2 = parseInt(document.getElementById('score2').value) || 0;
+    const matchMinutes = parseInt(document.getElementById('matchMinutes').value) || 0;
     const maxScore = window.currentScoreFormat || 11;
+    const selectedMVP = window.selectedMVP;
     
     if (isNaN(score1) || isNaN(score2)) {
         alert('Vui lòng nhập điểm số hợp lệ!');
+        return;
+    }
+    
+    if (matchMinutes <= 0) {
+        alert('Vui lòng nhập thời gian trận đấu hợp lệ!');
+        return;
+    }
+    
+    if (!selectedMVP) {
+        alert('Vui lòng chọn MVP cho trận đấu!');
         return;
     }
     
@@ -1252,6 +1385,8 @@ function submitScore(matchId) {
     const match = matches.find(m => m.id === matchId);
     match.score1 = score1;
     match.score2 = score2;
+    match.duration = matchMinutes;
+    match.mvp = selectedMVP;
     match.completed = true;
     
     if (tournamentFormat === 'round-robin') {

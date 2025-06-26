@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Dữ Liệu Vận Động Viên</title>
+    
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Cache Control System -->
+    <script src="cache-control.js"></script>
+    <style>
+        .data-manager-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .manager-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .manager-sections {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        .input-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .data-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76,175,80,0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn-primary, .btn-secondary, .btn-danger {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #1976D2;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+        
+        .player-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .player-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .player-item:hover {
+            border-color: #4CAF50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .player-item.editing {
+            border-color: #2196F3;
+            background: #e3f2fd;
+        }
+        
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .player-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #4CAF50;
+            object-fit: cover;
+        }
+        
+        .player-info h4 {
+            margin: 0;
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .player-team {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        
+        .player-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: white;
+            padding: 12px 8px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4CAF50;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        
+        .player-actions {
+            display: flex;
+            gap: 8px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-edit {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #1976D2;
+        }
+        
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #d32f2f;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .data-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .navigation-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .manager-sections {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .player-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="data-manager-container">
+        <div class="manager-header">
+            <h1><i class="fas fa-database"></i> Quản Lý Dữ Liệu Vận Động Viên</h1>
+            <p>Nhập và quản lý thông tin, thành tích của các vận động viên</p>
+        </div>
+        
+        <div class="manager-sections">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h3 class="section-title">
+                    <i class="fas fa-user-plus"></i>
+                    <span id="formTitle">Thêm Vận Động Viên</span>
+                </h3>
+                
+                <form id="playerForm">
+                    <input type="hidden" id="editingId" value="">
+                    
+                    <div class="form-group">
+                        <label for="playerName">Tên vận động viên *</label>
+                        <input type="text" id="playerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="playerTeam">Đội</label>
+                        <select id="playerTeam" required>
+                            <option value="">Chọn đội...</option>
+                            <option value="Team Alpha">Team Alpha</option>
+                            <option value="Team Bravo">Team Bravo</option>
+                            <option value="Team Charlie">Team Charlie</option>
+                            <option value="Team Delta">Team Delta</option>
+                            <option value="Team Echo">Team Echo</option>
+                            <option value="Team Foxtrot">Team Foxtrot</option>
+                            <option value="Team Golf">Team Golf</option>
+                            <option value="Team Hotel">Team Hotel</option>
+                            <option value="Team India">Team India</option>
+                            <option value="Team Juliet">Team Juliet</option>
+                            <option value="Team Kilo">Team Kilo</option>
+                            <option value="Team Lima">Team Lima</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="playerImage">URL Hình ảnh</label>
+                        <input type="url" id="playerImage" placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="matchesPlayed">Trận đấu</label>
+                            <input type="number" id="matchesPlayed" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="matchesWon">Thắng</label>
+                            <input type="number" id="matchesWon" min="0" value="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="totalPoints">Tổng điểm</label>
+                            <input type="number" id="totalPoints" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="avgPoints">TB/Trận</label>
+                            <input type="number" id="avgPoints" step="0.1" min="0" value="0" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            <span id="submitText">Thêm vận động viên</span>
+                        </button>
+                        <button type="button" id="cancelEdit" class="btn-secondary" style="display: none;">
+                            <i class="fas fa-times"></i>
+                            Hủy
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Data Section -->
+            <div class="data-section">
+                <h3 class="section-title">
+                    <i class="fas fa-users"></i>
+                    Danh Sách Vận Động Viên (<span id="playerCount">0</span>)
+                </h3>
+                
+                <div id="playerList" class="player-list">
+                    <div class="empty-state">
+                        <i class="fas fa-user-slash"></i>
+                        <h4>Chưa có vận động viên nào</h4>
+                        <p>Hãy thêm vận động viên đầu tiên bằng form bên trái</p>
+                    </div>
+                </div>
+                
+                <div class="data-actions">
+                    <button class="btn-secondary" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        Xuất dữ liệu
+                    </button>
+                    <button class="btn-secondary" onclick="importData()">
+                        <i class="fas fa-upload"></i>
+                        Nhập dữ liệu
+                    </button>
+                    <button class="btn-danger" onclick="clearAllData()">
+                        <i class="fas fa-trash"></i>
+                        Xóa tất cả
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i> Trang chính
+            </a>
+            <a href="results.html" class="nav-link">
+                <i class="fas fa-trophy"></i> Xem kết quả
+            </a>
+        </div>
+    </div>
+    
+    <script src="data-manager.js"></script>
+</body>
+</html> 
