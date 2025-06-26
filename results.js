@@ -5,6 +5,37 @@ class TournamentResults {
         this.init();
     }
 
+    // Hàm lấy đường dẫn hình ảnh với fallback
+    getPlayerImageSrc(player) {
+        if (player.image && !player.image.startsWith('data:')) {
+            return player.image;
+        } else {
+            return this.createPlayerAvatarSVG(player.name, player.gender || 'nữ');
+        }
+    }
+
+    // Tạo SVG avatar cho player
+    createPlayerAvatarSVG(name, gender) {
+        const initial = name.charAt(0).toUpperCase();
+        const emoji = gender === 'nam' ? '👨' : '👩';
+        const colors = [
+            '#667eea', '#f093fb', '#4facfe', '#fa709a', 
+            '#a8edea', '#ff9a9e', '#ffecd2', '#a1c4fd'
+        ];
+        const colorIndex = name.charCodeAt(0) % colors.length;
+        const bgColor = colors[colorIndex];
+        
+        const svgContent = `
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="50" fill="${bgColor}"/>
+                <text x="50" y="35" text-anchor="middle" fill="white" font-size="20" font-weight="bold">${initial}</text>
+                <text x="50" y="70" text-anchor="middle" font-size="25">${emoji}</text>
+            </svg>
+        `;
+        
+        return `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svgContent)))}`;
+    }
+
     init() {
         // Load tournament data from localStorage
         this.loadTournamentData();
@@ -78,14 +109,16 @@ class TournamentResults {
                         <div class="champion-members-centered">
                             ${champion.members.length >= 1 ? `
                                 <div class="champion-member">
-                                    <img src="${champion.members[0].image || champion.members[0].avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Go8J+MqjwvdGV4dD48L3N2Zz4K'}" alt="${champion.members[0].name}">
+                                    <img src="${this.getPlayerImageSrc(champion.members[0])}" alt="${champion.members[0].name}"
+                                         onerror="this.src='${this.createPlayerAvatarSVG(champion.members[0].name, champion.members[0].gender || 'nữ')}'">
                                     <span>${champion.members[0].name}</span>
                                 </div>
                             ` : ''}
                             <div class="champion-logo-center">${champion.logo}</div>
                             ${champion.members.length >= 2 ? `
                                 <div class="champion-member">
-                                    <img src="${champion.members[1].image || champion.members[1].avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Go8J+MqjwvdGV4dD48L3N2Zz4K'}" alt="${champion.members[1].name}">
+                                    <img src="${this.getPlayerImageSrc(champion.members[1])}" alt="${champion.members[1].name}"
+                                         onerror="this.src='${this.createPlayerAvatarSVG(champion.members[1].name, champion.members[1].gender || 'nữ')}'">
                                     <span>${champion.members[1].name}</span>
                                 </div>
                             ` : ''}
@@ -134,7 +167,8 @@ class TournamentResults {
         if (mvp) {
             document.getElementById('mvpAward').innerHTML = `
                 <div class="award-player">
-                    <img src="${mvp.image || mvp.avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Go8J+MqjwvdGV4dD48L3N2Zz4K'}" alt="${mvp.name}">
+                    <img src="${this.getPlayerImageSrc(mvp)}" alt="${mvp.name}" 
+                         onerror="this.src=this.createPlayerAvatarSVG('${mvp.name}', '${mvp.gender || 'nữ'}')">
                     <span class="award-name">${mvp.name}</span>
                     <small>${mvp.totalPoints} điểm tổng</small>
                 </div>
@@ -194,7 +228,8 @@ class TournamentResults {
                                         <div class="team-name-results">Team ${team.fullName}</div>
                                                                 <div class="team-members-results">
                             ${team.members.map(member => `
-                                <img src="${member.image || member.avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Go8J+MqjwvdGV4dD48L3N2Zz4K'}" alt="${member.name}" title="${member.name}">
+                                <img src="${this.getPlayerImageSrc(member)}" alt="${member.name}" title="${member.name}"
+                                     onerror="this.src='${this.createPlayerAvatarSVG(member.name, member.gender || 'nữ')}'">
                             `).join('')}
                         </div>
                                     </div>
@@ -518,7 +553,8 @@ class TournamentResults {
                 ${playerStats.map(player => `
                     <div class="player-stat-card">
                         <div class="player-avatar-stats">
-                            <img src="${player.image || player.avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Go8J+MqjwvdGV4dD48L3N2Zz4K'}" alt="${player.name}">
+                            <img src="${this.getPlayerImageSrc(player)}" alt="${player.name}"
+                                 onerror="this.src='${this.createPlayerAvatarSVG(player.name, player.gender || 'nữ')}'">
                         </div>
                         <div class="player-info-stats">
                             <h4>${player.name}</h4>

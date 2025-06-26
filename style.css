@@ -811,6 +811,25 @@ header p {
     60% { transform: translateY(-5px); }
 }
 
+/* Fallback Image Styles */
+.fallback-image {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.loaded-image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.game-card img, .mvp-player-avatar img, .player-avatar-stats img, .champion-member img {
+    transition: all 0.3s ease;
+}
+
+.game-card img:hover, .mvp-player-avatar img:hover {
+    transform: scale(1.05);
+}
+
 @media (max-width: 768px) {
     .tournament-layout {
         grid-template-columns: 1fr;

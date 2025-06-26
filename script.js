@@ -84,7 +84,9 @@ function displayPlayerCards() {
             <div class="card-background" style="background: ${player.gradient}"></div>
             
             <div class="card-image">
-                <img src="${player.image || player.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI2MCI+8J+Rqy08L3RleHQ+Cjwvc3ZnPgo=`}" alt="${player.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI2MCI+8J+RqZwvdGV4dD4KPC9zdmc+Cg=='">
+                <img src="${getPlayerImageSrc(player)}" alt="${player.name}" 
+                     onerror="handleImageError(this, '${player.name}', '${player.gender}')"
+                     onload="handleImageSuccess(this)">
                 ${player.selected ? '<div class="selected-overlay"><i class="fas fa-check-circle"></i></div>' : ''}
             </div>
             
@@ -118,6 +120,74 @@ function displayPlayerCards() {
             <div class="shine-effect"></div>
         </div>
     `).join('');
+}
+
+// Hàm lấy đường dẫn hình ảnh với fallback
+function getPlayerImageSrc(player) {
+    // Nếu có image thì dùng, không thì dùng fallback SVG
+    if (player.image && !player.image.startsWith('data:')) {
+        return player.image;
+    } else if (player.avatar) {
+        return createPlayerAvatarSVG(player.name, player.gender);
+    } else {
+        return createPlayerAvatarSVG(player.name, player.gender);
+    }
+}
+
+// Tạo SVG avatar cho player
+function createPlayerAvatarSVG(name, gender) {
+    const initial = name.charAt(0).toUpperCase();
+    const emoji = gender === 'nam' ? '👨' : '👩';
+    const colors = [
+        '#667eea', '#f093fb', '#4facfe', '#fa709a', 
+        '#a8edea', '#ff9a9e', '#ffecd2', '#a1c4fd'
+    ];
+    const colorIndex = name.charCodeAt(0) % colors.length;
+    const bgColor = colors[colorIndex];
+    
+    const svgContent = `
+        <svg width="300" height="400" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad${name}" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:${bgColor};stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:${adjustColor(bgColor, -20)};stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <rect width="300" height="400" fill="url(#grad${name})"/>
+            <circle cx="150" cy="160" r="60" fill="rgba(255,255,255,0.2)"/>
+            <text x="150" y="180" text-anchor="middle" fill="white" font-size="50" font-weight="bold">${initial}</text>
+            <text x="150" y="280" text-anchor="middle" font-size="40">${emoji}</text>
+            <text x="150" y="350" text-anchor="middle" fill="white" font-size="24" font-weight="500">${name}</text>
+        </svg>
+    `;
+    
+    return `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svgContent)))}`;
+}
+
+// Hàm điều chỉnh màu sắc
+function adjustColor(color, amount) {
+    const usePound = color[0] === '#';
+    const col = usePound ? color.slice(1) : color;
+    const num = parseInt(col, 16);
+    let r = (num >> 16) + amount;
+    let g = (num >> 8 & 0x00FF) + amount;
+    let b = (num & 0x0000FF) + amount;
+    r = r > 255 ? 255 : r < 0 ? 0 : r;
+    g = g > 255 ? 255 : g < 0 ? 0 : g;
+    b = b > 255 ? 255 : b < 0 ? 0 : b;
+    return (usePound ? '#' : '') + (r << 16 | g << 8 | b).toString(16).padStart(6, '0');
+}
+
+// Xử lý lỗi hình ảnh
+function handleImageError(img, playerName, gender) {
+    console.log(`Image failed to load for ${playerName}, using fallback`);
+    img.src = createPlayerAvatarSVG(playerName, gender);
+    img.classList.add('fallback-image');
+}
+
+// Xử lý thành công load hình ảnh
+function handleImageSuccess(img) {
+    img.classList.add('loaded-image');
 }
 
 // Chọn/bỏ chọn người chơi
@@ -913,8 +983,8 @@ function openScoreModal(matchId) {
                     ${match.team1.members.map(member => `
                         <div class="mvp-player-card" onclick="selectMVP('${member.name}', '${match.team1.fullName}')">
                             <div class="mvp-player-avatar">
-                                <img src="${member.image || member.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K`}" alt="${member.name}" 
-                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K'">
+                                <img src="${getPlayerImageSrc(member)}" alt="${member.name}" 
+                                     onerror="handleImageError(this, '${member.name}', '${member.gender || 'nữ'}')">
                             </div>
                             <div class="mvp-player-name">${member.name}</div>
                             <div class="mvp-player-team">${match.team1.fullName}</div>
@@ -923,8 +993,8 @@ function openScoreModal(matchId) {
                     ${match.team2.members.map(member => `
                         <div class="mvp-player-card" onclick="selectMVP('${member.name}', '${match.team2.fullName}')">
                             <div class="mvp-player-avatar">
-                                <img src="${member.image || member.avatar || `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K`}" alt="${member.name}"
-                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI1MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQwIj7wn5Gj8J+cqjwvdGV4dD48L3N2Zz4K'">
+                                <img src="${getPlayerImageSrc(member)}" alt="${member.name}"
+                                     onerror="handleImageError(this, '${member.name}', '${member.gender || 'nữ'}')">
                             </div>
                             <div class="mvp-player-name">${member.name}</div>
                             <div class="mvp-player-team">${match.team2.fullName}</div>
